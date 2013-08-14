@@ -18,8 +18,8 @@ namespace PhoneNumbers
 {
   public class LocaleData
   {
-    public static readonly Dictionary<String, Dictionary<String, String>> Data = new Dictionary<String, Dictionary<String, String>>
-    {
+    public static readonly Dictionary<String, Dictionary<String, String>> Data = new Dictionary<String, Dictionary<String, String>>();
+    /*{
       {"AD", new Dictionary<String, String>
       {
         {"aa", "Andorra"},
@@ -47197,6 +47197,6 @@ namespace PhoneNumbers
         {"zh", "\u6d25\u5df4\u5e03\u97e6"},
         {"zu", "*aa"},
       }},
-    };
+    };*/
   }
 }

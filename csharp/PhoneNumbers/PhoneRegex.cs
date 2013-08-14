@@ -34,9 +34,8 @@ namespace PhoneNumbers
         public PhoneRegex(String pattern, RegexOptions options)
             : base(pattern, options)
         {
-            var o = options | RegexOptions.Compiled;
-            allRegex_ = new Regex(String.Format("^(?:{0})$", pattern), o);
-            beginRegex_ = new Regex(String.Format("^(?:{0})", pattern), o);
+            allRegex_ = new Regex(String.Format("^(?:{0})$", pattern), options);
+            beginRegex_ = new Regex(String.Format("^(?:{0})", pattern), options);
         }
 
         public Match MatchAll(String value)
