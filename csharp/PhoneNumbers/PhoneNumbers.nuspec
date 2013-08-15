@@ -1,17 +1,20 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<?xml version="1.0"?>
+<package >
   <metadata>
-    <id>libphonenumber-csharp</id>
-    <version>$version$</version>
-    <authors>Patrick Mézard, Google, libphonenumber contributors</authors>
-    <owners>Patrick Mézard</owners>
-    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
-    <projectUrl>https://bitbucket.org/pmezard/libphonenumber-csharp/wiki/Home</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>
-		C# port of Google's common Java, C++ and Javascript library for parsing, formatting, storing and validating international phone numbers.
-		For usage samples: http://code.google.com/p/libphonenumber/
-    </description>
-    <tags>phonenumber phone</tags>
+    <id>libphonenumber-csharp-portable</id>
+    <version>1.0.0.1</version>
+    <title>libphonenumber-csharp-portable</title>
+    <authors>erez</authors>
+    <owners>erez</owners>
+    <licenseUrl>https://github.com/erezak/libphonenumber-csharp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/erezak/libphonenumber-csharp</projectUrl>
+    <iconUrl>https://www.nuget.org/Content/Images/packageDefaultIcon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Portable Class Library of the C# port of Google's common Java, C++ and Javascript library for parsing, formatting, storing and validating international phone numbers.
+	For usage samples: http://code.google.com/p/libphonenumber/
+	</description>
+    <releaseNotes>Now fully working on Windows Phone, Windows Store and Windows</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>phonenumebr phone e164 e.164 number international format</tags>
   </metadata>
 </package>

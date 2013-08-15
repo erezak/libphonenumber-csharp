@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PhoneNumbers")]
+[assembly: AssemblyTitle("libphonenumber-csharp-portable")]
 [assembly: AssemblyDescription("Portable library port of libphonenumber")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Erez A. Korn (esemobilesoftware)")]
-[assembly: AssemblyProduct("PhoneNumbers")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyProduct("libphonenumber-csharp-portable")]
+[assembly: AssemblyCopyright("(C) 2013 Erez A. Korn")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
