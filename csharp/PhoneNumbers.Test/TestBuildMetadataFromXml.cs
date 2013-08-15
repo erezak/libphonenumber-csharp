@@ -18,7 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using System.Xml.XPath;
+using System.Xml.Linq;
 using NUnit.Framework;
 
 namespace PhoneNumbers.Test
@@ -27,13 +27,11 @@ namespace PhoneNumbers.Test
     class TestBuildMetadataFromXml
     {
         // Helper method that outputs a DOM element from a XML string.
-        private static XmlElement parseXmlString(String xmlString)
+        private static XElement parseXmlString(String xmlString)
         {
 
-            var document = new XmlDocument();
-            document.LoadXml(xmlString);
-            document.Normalize();
-            return document.DocumentElement;
+            var document = XElement.Parse(xmlString);
+            return document;
         }
 
         // Tests validateRE().
@@ -101,7 +99,7 @@ namespace PhoneNumbers.Test
                 "           preferredExtnPrefix=' x' mainCountryForCode='true'" +
                 "           leadingZeroPossible='true'>" +
                 "</territory>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder phoneMetadata =
                 BuildMetadataFromXml.LoadTerritoryTagMetadata("33", territoryElement, "0");
             Assert.AreEqual(33, phoneMetadata.CountryCode);
@@ -120,7 +118,7 @@ namespace PhoneNumbers.Test
         public void TestLoadTerritoryTagMetadataSetsBooleanFieldsToFalseByDefault()
         {
             String xmlInput = "<territory countryCode='33'/>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder phoneMetadata =
                 BuildMetadataFromXml.LoadTerritoryTagMetadata("33", territoryElement, "");
             Assert.False(phoneMetadata.MainCountryForCode);
@@ -131,7 +129,7 @@ namespace PhoneNumbers.Test
         public void TestLoadTerritoryTagMetadataSetsNationalPrefixForParsingByDefault()
         {
             String xmlInput = "<territory countryCode='33'/>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder phoneMetadata =
                 BuildMetadataFromXml.LoadTerritoryTagMetadata("33", territoryElement, "00");
             // When unspecified, nationalPrefixForParsing defaults to nationalPrefix.
@@ -143,7 +141,7 @@ namespace PhoneNumbers.Test
         public void TestLoadTerritoryTagMetadataWithRequiredAttributesOnly()
         {
             String xmlInput = "<territory countryCode='33' internationalPrefix='00'/>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             // Should not throw any exception.
             BuildMetadataFromXml.LoadTerritoryTagMetadata("33", territoryElement, "");
         }
@@ -154,7 +152,7 @@ namespace PhoneNumbers.Test
         {
             String intlFormat = "$1 $2";
             String xmlInput = "<numberFormat><intlFormat>" + intlFormat + "</intlFormat></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             String nationalFormat = "";
 
@@ -168,7 +166,7 @@ namespace PhoneNumbers.Test
         {
             String intlFormat = "$1 $2";
             String xmlInput = "<numberFormat><intlFormat>" + intlFormat + "</intlFormat></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             String nationalFormat = "$1";
 
@@ -181,7 +179,7 @@ namespace PhoneNumbers.Test
         public void TestLoadInternationalFormatExpectsOnlyOnePattern()
         {
             String xmlInput = "<numberFormat><intlFormat/><intlFormat/></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
 
             // Should throw an exception as multiple intlFormats are provided.
@@ -200,7 +198,7 @@ namespace PhoneNumbers.Test
         public void TestLoadInternationalFormatUsesNationalFormatByDefault()
         {
             String xmlInput = "<numberFormat></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             String nationalFormat = "$1 $2 $3";
 
@@ -216,7 +214,7 @@ namespace PhoneNumbers.Test
             String nationalFormat = "$1 $2";
             String xmlInput = String.Format("<numberFormat><format>{0}</format></numberFormat>",
                                             nationalFormat);
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             NumberFormat.Builder numberFormat = new NumberFormat.Builder();
 
@@ -229,7 +227,7 @@ namespace PhoneNumbers.Test
         public void TestLoadNationalFormatRequiresFormat()
         {
             String xmlInput = "<numberFormat></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             NumberFormat.Builder numberFormat = new NumberFormat.Builder();
 
@@ -248,7 +246,7 @@ namespace PhoneNumbers.Test
         public void TestLoadNationalFormatExpectsExactlyOneFormat()
         {
             String xmlInput = "<numberFormat><format/><format/></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             NumberFormat.Builder numberFormat = new NumberFormat.Builder();
 
@@ -276,7 +274,7 @@ namespace PhoneNumbers.Test
                 "    </numberFormat>" +
                 "  </availableFormats>" +
                 "</territory>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             BuildMetadataFromXml.LoadAvailableFormats(
                 metadata, element, "0", "", false /* NP not optional */);
@@ -296,7 +294,7 @@ namespace PhoneNumbers.Test
                 "    </numberFormat>" +
                 "  </availableFormats>" +
                 "</territory>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             BuildMetadataFromXml.LoadAvailableFormats(
                 metadata, element, "0", "", false /* NP not optional */);
@@ -314,7 +312,7 @@ namespace PhoneNumbers.Test
                 "    <numberFormat><format>$1 $2 $3</format></numberFormat>" +
                 "  </availableFormats>" +
                 "</territory>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             BuildMetadataFromXml.LoadAvailableFormats(
                 metadata, element, "0", "($1)", false /* NP not optional */);
@@ -330,7 +328,7 @@ namespace PhoneNumbers.Test
                 "    <numberFormat><format>$1 $2 $3</format></numberFormat>" +
                 "  </availableFormats>" +
                 "</territory>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             BuildMetadataFromXml.LoadAvailableFormats(
                 metadata, element, "0", "($1)", false /* NP not optional */);
@@ -347,7 +345,7 @@ namespace PhoneNumbers.Test
                 "    <numberFormat><format>$1-$2</format></numberFormat>" +
                 "  </availableFormats>" +
                 "</territory>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             BuildMetadataFromXml.LoadAvailableFormats(
                 metadata, element, "0", "($1)", false /* NP not optional */);
@@ -359,7 +357,7 @@ namespace PhoneNumbers.Test
         public void TestLoadInternationalFormatDoesNotSetIntlFormatWhenNA()
         {
             String xmlInput = "<numberFormat><intlFormat>NA</intlFormat></numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             String nationalFormat = "$1 $2";
 
@@ -375,7 +373,7 @@ namespace PhoneNumbers.Test
                 "<numberFormat>" +
                 "<leadingDigits>1</leadingDigits><leadingDigits>2</leadingDigits>" +
                 "</numberFormat>";
-            XmlElement numberFormatElement = parseXmlString(xmlInput);
+            XElement numberFormatElement = parseXmlString(xmlInput);
             NumberFormat.Builder numberFormat = new NumberFormat.Builder();
             BuildMetadataFromXml.SetLeadingDigitsPatterns(numberFormatElement, numberFormat);
 
@@ -388,7 +386,7 @@ namespace PhoneNumbers.Test
         public void TestGetNationalPrefixFormattingRuleFromElement()
         {
             String xmlInput = "<territory nationalPrefixFormattingRule='$NP$FG'/>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             Assert.AreEqual("0${1}",
                          BuildMetadataFromXml.GetNationalPrefixFormattingRuleFromElement(element, "0"));
         }
@@ -398,7 +396,7 @@ namespace PhoneNumbers.Test
         public void TestGetDomesticCarrierCodeFormattingRuleFromElement()
         {
             String xmlInput = "<territory carrierCodeFormattingRule='$NP$CC $FG'/>";
-            XmlElement element = parseXmlString(xmlInput);
+            XElement element = parseXmlString(xmlInput);
             // C#: the output regex differs from Java one
             Assert.AreEqual("0$CC ${1}",
                          BuildMetadataFromXml.GetDomesticCarrierCodeFormattingRuleFromElement(element,
@@ -416,7 +414,7 @@ namespace PhoneNumbers.Test
         [Test]
         public void TestProcessPhoneNumberDescElementWithInvalidInput()
         {
-            XmlElement territoryElement = parseXmlString("<territory/>");
+            XElement territoryElement = parseXmlString("<territory/>");
 
             var phoneNumberDesc = BuildMetadataFromXml.ProcessPhoneNumberDescElement(
                 null, territoryElement, "invalidType", false);
@@ -429,7 +427,7 @@ namespace PhoneNumbers.Test
         {
             PhoneNumberDesc generalDesc = new PhoneNumberDesc.Builder()
                 .SetPossibleNumberPattern("\\d{6}").Build();
-            XmlElement territoryElement = parseXmlString("<territory><fixedLine/></territory>");
+            XElement territoryElement = parseXmlString("<territory><fixedLine/></territory>");
 
             var phoneNumberDesc = BuildMetadataFromXml.ProcessPhoneNumberDescElement(
                 generalDesc, territoryElement, "fixedLine", false);
@@ -445,7 +443,7 @@ namespace PhoneNumbers.Test
                 "<territory><fixedLine>" +
                 "  <possibleNumberPattern>\\d{6}</possibleNumberPattern>" +
                 "</fixedLine></territory>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
 
             var phoneNumberDesc = BuildMetadataFromXml.ProcessPhoneNumberDescElement(
                 generalDesc, territoryElement, "fixedLine", false);
@@ -459,7 +457,7 @@ namespace PhoneNumbers.Test
                 "<territory><fixedLine>" +
                 "  <exampleNumber>01 01 01 01</exampleNumber>" +
                 "</fixedLine></territory>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             var phoneNumberDesc = BuildMetadataFromXml.ProcessPhoneNumberDescElement(
                 null, territoryElement, "fixedLine", true);
             Assert.AreEqual("", phoneNumberDesc.ExampleNumber);
@@ -472,7 +470,7 @@ namespace PhoneNumbers.Test
                 "<territory><fixedLine>" +
                  "  <exampleNumber>01 01 01 01</exampleNumber>" +
                  "</fixedLine></territory>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
 
             var phoneNumberDesc = BuildMetadataFromXml.ProcessPhoneNumberDescElement(
                 null, territoryElement, "fixedLine", false);
@@ -486,7 +484,7 @@ namespace PhoneNumbers.Test
                 "<territory><fixedLine>" +
                  "  <possibleNumberPattern>\t \\d { 6 } </possibleNumberPattern>" +
                  "</fixedLine></territory>";
-            XmlElement countryElement = parseXmlString(xmlInput);
+            XElement countryElement = parseXmlString(xmlInput);
 
             var phoneNumberDesc = BuildMetadataFromXml.ProcessPhoneNumberDescElement(
                 null, countryElement, "fixedLine", false);
@@ -502,7 +500,7 @@ namespace PhoneNumbers.Test
                 "  <fixedLine><nationalNumberPattern>\\d{6}</nationalNumberPattern></fixedLine>" +
                 "  <mobile><nationalNumberPattern>\\d{6}</nationalNumberPattern></mobile>" +
                 "</territory>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             // Should set sameMobileAndFixedPattern to true.
             BuildMetadataFromXml.LoadGeneralDesc(metadata, territoryElement, false);
@@ -525,7 +523,7 @@ namespace PhoneNumbers.Test
                 "  <uan><nationalNumberPattern>\\d{9}</nationalNumberPattern></uan>" +
                 "  <shortCode><nationalNumberPattern>\\d{10}</nationalNumberPattern></shortCode>" +
                  "</territory>";
-            XmlElement territoryElement = parseXmlString(xmlInput);
+            XElement territoryElement = parseXmlString(xmlInput);
             PhoneMetadata.Builder metadata = new PhoneMetadata.Builder();
             BuildMetadataFromXml.LoadGeneralDesc(metadata, territoryElement, false);
             Assert.AreEqual("\\d{1}", metadata.FixedLine.NationalNumberPattern);
