@@ -4,7 +4,7 @@
 
 Cloned from [https://bitbucket.org/pmezard/libphonenumber-csharp](https://bitbucket.org/pmezard/libphonenumber-csharp).
 
-> The library is not working out of the box on a Windows Phone
+> The library is now working out of the box on a Windows Phone
 
 
 # From the original WIKI
