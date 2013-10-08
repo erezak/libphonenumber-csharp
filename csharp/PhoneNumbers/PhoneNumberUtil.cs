@@ -81,7 +81,7 @@ namespace PhoneNumbers
     * Utility for international phone numbers. Functionality includes formatting, parsing and
     * validation.
     *
-    * <p>If you use this library, and want to be notified about important changes, please sign up to
+    * If you use this library, and want to be notified about important changes, please sign up to
     * our <a href="http://groups.google.com/group/libphonenumber-discuss/about">mailing list</a>.
     *
     * NOTE: A lot of methods in this class require Region Code strings. These must be provided using
@@ -552,7 +552,15 @@ namespace PhoneNumbers
                 nanpaRegions_.UnionWith(regions);
         }
 
-        private void LoadMetadataFromFile(String filePrefix, String regionCode, int countryCallingCode)
+        public void PreloadMetadataFromFile()
+        {
+            lock (regionToMetadataMap)
+            {
+                LoadMetadataFromFile(currentFilePrefix_, "");
+            }
+        }
+
+        private void LoadMetadataFromFile(String filePrefix, String regionCode)
         {
             var asm = typeof(PhoneNumberUtil).GetTypeInfo().Assembly;
             bool isNonGeoRegion = REGION_CODE_FOR_NON_GEO_ENTITY.Equals(regionCode);
@@ -1900,13 +1908,16 @@ namespace PhoneNumbers
         {
             if (!IsValidRegionCode(regionCode))
                 return null;
-            lock (regionToMetadataMap)
+            if (!regionToMetadataMap.ContainsKey(regionCode))
             {
-                if (!regionToMetadataMap.ContainsKey(regionCode))
+                lock (regionToMetadataMap)
                 {
-                    // The regionCode here will be valid and won't be '001', so we don't need to worry about
-                    // what to pass in for the country calling code.
-                    LoadMetadataFromFile(currentFilePrefix_, regionCode, 0);
+                    if (!regionToMetadataMap.ContainsKey(regionCode))
+                    {
+                        // The regionCode here will be valid and won't be '001', so we don't need to worry about
+                        // what to pass in for the country calling code.
+                        LoadMetadataFromFile(currentFilePrefix_, regionCode);
+                    }
                 }
             }
             return regionToMetadataMap.ContainsKey(regionCode)
@@ -1924,7 +1935,7 @@ namespace PhoneNumbers
                 }
                 if (!countryCodeToNonGeographicalMetadataMap.ContainsKey(countryCallingCode))
                 {
-                    LoadMetadataFromFile(currentFilePrefix_, REGION_CODE_FOR_NON_GEO_ENTITY, countryCallingCode);
+                    LoadMetadataFromFile(currentFilePrefix_, REGION_CODE_FOR_NON_GEO_ENTITY);
                 }
             }
             PhoneMetadata metadata = null;
