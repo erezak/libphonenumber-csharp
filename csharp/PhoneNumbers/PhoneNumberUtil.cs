@@ -849,6 +849,11 @@ namespace PhoneNumbers
             return normalizedNumber.ToString();
         }
 
+        public IReadOnlyDictionary<int, List<String>> CallingCodeToRegion
+        {
+            get { return countryCallingCodeToRegionCodeMap_; }
+        }
+
         public static PhoneNumberUtil GetInstance(String baseFileLocation,
             Dictionary<int, List<String>> countryCallingCodeToRegionCodeMap)
         {
