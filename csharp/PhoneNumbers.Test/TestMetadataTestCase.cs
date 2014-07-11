@@ -32,7 +32,7 @@ namespace PhoneNumbers.Test
     */
     class TestMetadataTestCase
     {
-        public const String TEST_META_DATA_FILE_PREFIX = "PhoneNumberMetaDataForTesting.xml";
+        public const String TEST_META_DATA_FILE_PREFIX = "PhoneNumberMetadataForTestingProto";
 
         protected PhoneNumberUtil phoneUtil;
 

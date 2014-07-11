@@ -1160,9 +1160,16 @@ namespace PhoneNumbers.Test
             invalidNumber = new PhoneNumber.Builder().SetCountryCode(3923).SetNationalNumber(2366L).Build();
             Assert.False(phoneUtil.IsValidNumberForRegion(invalidNumber, RegionCode.ZZ));
             Assert.False(phoneUtil.IsValidNumberForRegion(invalidNumber, RegionCode.UN001));
-            invalidNumber = new PhoneNumber.Builder().SetCountryCode(0).Build();
-            Assert.False(phoneUtil.IsValidNumberForRegion(invalidNumber, RegionCode.UN001));
-            Assert.False(phoneUtil.IsValidNumberForRegion(invalidNumber, RegionCode.ZZ));
+            
+            try
+            {
+                invalidNumber = new PhoneNumber.Builder().SetCountryCode(0).Build();
+                Assert.False(phoneUtil.IsValidNumberForRegion(invalidNumber, RegionCode.UN001));
+                Assert.False(phoneUtil.IsValidNumberForRegion(invalidNumber, RegionCode.ZZ));
+            }
+            catch (Google.ProtocolBuffers.UninitializedMessageException)
+            {
+            }
         }
 
         [Test]
