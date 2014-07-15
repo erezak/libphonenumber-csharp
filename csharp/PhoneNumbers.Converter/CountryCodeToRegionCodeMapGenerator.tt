@@ -1,0 +1,39 @@
+﻿<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+using System;
+using System.Collections.Generic;
+namespace <#=_ns#> 
+{
+    public class <#=_className#>
+    {
+
+        private static readonly Dictionary<int, List<String>> _countryCodeToRegionCodeMap = new Dictionary<int, List<string>>
+        {
+		<#
+			foreach(var kv in _map)
+			{
+				WriteLine("            {");
+				WriteLine("                " + kv.Key.ToString() + ",");
+				WriteLine("                new List<string>");
+				WriteLine("                {");
+				foreach(var item in kv.Value)
+				{
+					WriteLine("                    \"" + item + "\",");
+				}
+				WriteLine("                }");
+				WriteLine("            },");
+			}
+			#>
+        };
+        
+
+        public static Dictionary<int, List<String>> GetCountryCodeToRegionCodeMap()
+        {
+            return _countryCodeToRegionCodeMap;
+        }
+    }
+}

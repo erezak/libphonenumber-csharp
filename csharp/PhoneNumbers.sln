@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumbers", "PhoneNumbers\PhoneNumbers.csproj", "{2DCD7C72-1A52-4961-88BC-B2E0BCC01B88}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumbers.Test", "PhoneNumbers.Test\PhoneNumbers.Test.csproj", "{8E08D659-BBF6-4967-A56E-EA695DA6B45C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumbersConverter", "PhoneNumbers.Converter\PhoneNumbers.Converter.csproj", "{8B50EC63-29CD-4A53-A317-EDB7303A7909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +38,16 @@ Global
 		{8E08D659-BBF6-4967-A56E-EA695DA6B45C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E08D659-BBF6-4967-A56E-EA695DA6B45C}.Silverlight2|Any CPU.ActiveCfg = Release|Any CPU
 		{8E08D659-BBF6-4967-A56E-EA695DA6B45C}.Silverlight2|Any CPU.Build.0 = Release|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Debug_Silverlight2|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Debug_Silverlight2|Any CPU.Build.0 = Debug|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Release_Silverlight2|Any CPU.ActiveCfg = Release|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Release_Silverlight2|Any CPU.Build.0 = Release|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Silverlight2|Any CPU.ActiveCfg = Release|Any CPU
+		{8B50EC63-29CD-4A53-A317-EDB7303A7909}.Silverlight2|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

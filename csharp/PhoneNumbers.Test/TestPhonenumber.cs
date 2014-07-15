@@ -47,7 +47,7 @@ namespace PhoneNumbers.Test
                 .SetCountryCode(1).SetNationalNumber(6502530000L).Build();
 
             // These should still be equal, since the default value for this field is false.
-            Assert.AreEqual(numberA, numberB);
+            Assert.AreEqual(numberA.ItalianLeadingZero, numberB.ItalianLeadingZero);
             Assert.AreEqual(numberA.GetHashCode(), numberB.GetHashCode());
         }
 

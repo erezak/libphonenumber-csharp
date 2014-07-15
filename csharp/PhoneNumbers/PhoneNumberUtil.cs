@@ -105,7 +105,7 @@ namespace PhoneNumbers
         // We don't allow input strings for parsing to be longer than 250 chars. This prevents malicious
         // input from overflowing the regular-expression engine.
         private const int MAX_INPUT_STRING_LENGTH = 250;
-        internal const String META_DATA_FILE_PREFIX = "PhoneNumberMetaData.xml";
+        internal const String META_DATA_FILE_PREFIX = "PhoneNumberMetadataProto";
         internal const String UNKNOWN_REGION = "ZZ";
 
         private String currentFilePrefix_ = META_DATA_FILE_PREFIX;
@@ -556,12 +556,14 @@ namespace PhoneNumbers
         {
             var asm = typeof(PhoneNumberUtil).GetTypeInfo().Assembly;
             bool isNonGeoRegion = REGION_CODE_FOR_NON_GEO_ENTITY.Equals(regionCode);
-            var name = asm.GetManifestResourceNames().Where(n => n.EndsWith(filePrefix)).FirstOrDefault() ?? "missing";
+            String fileName = filePrefix + "_" + (isNonGeoRegion ? countryCallingCode.ToString() : regionCode);
+
+            var name = asm.GetManifestResourceNames().Where(n => n.EndsWith(fileName)).FirstOrDefault() ?? "missing";
             using (var stream = asm.GetManifestResourceStream(name))
             {
                 try
                 {
-                    var meta = BuildMetadataFromXml.BuildPhoneMetadataCollection(stream, false);
+                    var meta = PhoneMetadataCollection.ParseFrom(stream);
                     foreach (var m in meta.MetadataList)
                     {
                         if(isNonGeoRegion)
