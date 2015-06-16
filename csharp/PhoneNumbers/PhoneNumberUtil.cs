@@ -95,7 +95,7 @@ namespace PhoneNumbers
     public class PhoneNumberUtil
     {
         // Flags to use when compiling regular expressions for phone numbers.
-        internal static readonly RegexOptions REGEX_FLAGS = RegexOptions.IgnoreCase | RegexOptions.CultureInvariant;
+        internal const RegexOptions REGEX_FLAGS = RegexOptions.IgnoreCase | RegexOptions.CultureInvariant;
         // The minimum and maximum length of the national significant number.
         internal const int MIN_LENGTH_FOR_NSN = 2;
         // The ITU says the maximum length should be 15, but we have found longer numbers in Germany.
