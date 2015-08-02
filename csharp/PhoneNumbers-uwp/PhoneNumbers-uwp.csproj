@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4d33807d-3037-47a6-b910-14bcbbee77d1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>libphonenumber_csharp_portable</RootNamespace>
+    <AssemblyName>libphonenumber_uwp</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget>ARM</PlatformTarget>
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_1_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\PhoneNumbers\AreaCodeMap.cs" />
+    <Compile Include="..\PhoneNumbers\AreaCodeMapStorageStrategy.cs" />
+    <Compile Include="..\PhoneNumbers\AreaCodeParser.cs" />
+    <Compile Include="..\PhoneNumbers\AsYouTypeFormatter.cs" />
+    <Compile Include="..\PhoneNumbers\BuildMetadataFromXml.cs" />
+    <Compile Include="..\PhoneNumbers\CountryCodeToRegionCodeMap.cs" />
+    <Compile Include="..\PhoneNumbers\DefaultMapStorage.cs" />
+    <Compile Include="..\PhoneNumbers\FlyweightMapStorage.cs" />
+    <Compile Include="..\PhoneNumbers\ListExtension.cs" />
+    <Compile Include="..\PhoneNumbers\LocaleData.cs" />
+    <Compile Include="..\PhoneNumbers\MappingFileProvider.cs" />
+    <Compile Include="..\PhoneNumbers\MetadataManager.cs" />
+    <Compile Include="..\PhoneNumbers\NumberParseException.cs" />
+    <Compile Include="..\PhoneNumbers\Phonemetadata.cs" />
+    <Compile Include="..\PhoneNumbers\Phonenumber.cs" />
+    <Compile Include="..\PhoneNumbers\PhoneNumberMatch.cs" />
+    <Compile Include="..\PhoneNumbers\PhoneNumberMatcher.cs" />
+    <Compile Include="..\PhoneNumbers\PhoneNumberOfflineGeocoder.cs" />
+    <Compile Include="..\PhoneNumbers\PhoneNumberUtil.cs" />
+    <Compile Include="..\PhoneNumbers\PhoneRegex.cs" />
+    <Compile Include="..\PhoneNumbers\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\PhoneNumbers\RegexCache.cs" />
+    <Compile Include="..\PhoneNumbers\RegionCode.cs" />
+    <Compile Include="..\PhoneNumbers\ShortNumberUtil.cs" />
+    <Compile Include="..\PhoneNumbers\Util.cs" />
+    <Compile Include="..\PhoneNumbers\XDocumentLegacy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_20_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_212_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_212_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_213_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_216_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_220_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_221_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_222_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_222_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_224_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_225_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_225_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_226_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_228_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_228_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_228_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_229_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_229_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_230_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_230_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_230_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_232_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_233_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_234_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_238_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_238_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_239_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_239_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_242_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_242_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_243_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_243_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_244_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_244_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_245_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_245_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_247_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_249_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_251_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_252_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_254_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_256_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_258_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_258_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_260_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_261_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_263_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_264_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_266_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_267_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_268_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_269_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_269_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_27_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_290_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_290_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_299_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_30_el" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_30_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_31_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_31_nl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_33_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_33_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_34_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_34_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_351_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_351_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_352_de" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_352_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_352_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_353_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_354_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_355_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_358_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_358_fi" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_358_se" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_36_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_36_hu" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_370_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_371_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_372_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_373_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_373_ro" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_373_ru" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_374_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_381_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_381_sr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_39_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_39_it" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_40_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_40_ro" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_41_de" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_41_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_41_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_41_it" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_420_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_421_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_43_de" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_43_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_44_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_46_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_46_sv" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_48_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_48_pl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_49_de" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_49_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_51_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_53_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_54_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_54_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_55_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_55_pt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_56_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_56_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_57_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_57_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_58_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_58_es" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_62_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_62_id" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_66_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_66_th" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_7_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_7_ru" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_81_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_81_ja" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_82_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_82_fr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_82_ko" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_82_zh" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_82_zh_Hant" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_84_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_84_vi" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_86_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_86_zh" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_886_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_886_zh" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_886_zh_Hant" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_90_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_90_tr" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_91_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_94_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_98_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\prod_98_fa" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\test_1_de" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\test_1_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\test_82_en" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\res\test_82_ko" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\PhoneNumberAlternateFormats.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\PhoneNumberMetaData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\PhoneNumbers\PhoneNumberMetaDataForTesting.xml" />
+    <Content Include="Properties\PhoneNumbers_uwp.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PhoneNumbers\PhoneNumbersKey.pfx" />
+    <EmbeddedResource Include="..\PhoneNumbers\res\localedata" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
