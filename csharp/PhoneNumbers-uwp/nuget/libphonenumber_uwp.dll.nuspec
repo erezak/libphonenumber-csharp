@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>libphonenumber_uwp.dll</id>
+    <version>1.0.0</version>
+    <authors>langboost</authors>
+    <owners>langboost</owners>
+    <licenseUrl>https://github.com/langboost/libphonenumber-csharp/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/langboost/libphonenumber-csharp</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>NuGet package for libphonenumber as a UWP class library. This is only a temporary solution until the original project takes over this aspect of releases.</description>
+    <releaseNotes>No functional changes. Code was simply built against the latest UWP environment for Windows 10 devices.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>libphonenumber e164</tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>

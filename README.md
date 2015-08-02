@@ -5,6 +5,7 @@
 Cloned from [https://bitbucket.org/pmezard/libphonenumber-csharp](https://bitbucket.org/pmezard/libphonenumber-csharp).
 
 > The library is now working out of the box on a Windows Phone
+> The library is now available for consumption in UWP on Windows 10 devices
 
 
 # From the original WIKI
