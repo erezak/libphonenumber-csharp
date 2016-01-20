@@ -43,6 +43,15 @@ namespace PhoneNumbers.Test
             wrongTypeCases.Clear();
         }
 
+        [Test]
+        public void TestParse()
+        {
+            var phoneNumber = phoneNumberUtil.Parse("410-978-2234");
+            var isValid = phoneNumberUtil.IsValidNumber(phoneNumber);
+
+            Assert.IsTrue(isValid);
+        }
+
         /**
         * @param exampleNumberRequestedType  type we are requesting an example number for
         * @param possibleExpectedTypes       acceptable types that this number should match, such as
