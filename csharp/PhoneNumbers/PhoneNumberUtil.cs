@@ -1942,6 +1942,56 @@ namespace PhoneNumbers
             return possibleNumberPatternMatch.Success && nationalNumberPatternMatch.Success;
         }
 
+        /// <summary>
+        /// Checks to see if the given phone number is valid for the given regionCode
+        /// </summary>
+        /// <param name="phoneNumber"></param>
+        /// <param name="regionCode"></param>
+        /// <returns>True if valid, false if not (or not able to parse phone number based on region)</returns>
+        public bool IsValidNumber(String phoneNumber, String regionCode)
+        {
+            if (String.IsNullOrEmpty(regionCode))
+                return false;
+
+            var pn = Parse(phoneNumber, regionCode);
+            if (pn != null)            
+                return IsValidNumberForRegion(pn, regionCode);
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks to see if the given phone number is valid for one of the regionCodes. If valid, matchedRegionCode will be populated
+        /// with the matched region code for the valid phone number.
+        /// </summary>
+        /// <param name="phoneNumber"></param>
+        /// <param name="regionCodes"></param>
+        /// <param name="matchedRegionCode">If a valid number, this will be populated with the matching region code.</param>
+        /// <returns>True if valid, false if not (or not able to parse phone number based on one of the regions)</returns>
+        public bool IsValidNumber(String phoneNumber, IList<String> regionCodes, out String matchedRegionCode)
+        {
+            matchedRegionCode = String.Empty;
+
+            if (regionCodes == null || regionCodes.Count == 0)
+                return false;
+
+            var phoneNumbers = new List<PhoneNumber>();
+            foreach (var regionCode in regionCodes)
+            {
+                var pn = Parse(phoneNumber, regionCode);
+                if (pn != null)
+                {
+                    if (IsValidNumberForRegion(pn, regionCode))
+                    {
+                        matchedRegionCode = regionCode;
+                        phoneNumbers.Add(pn);
+                    }
+                }
+            }
+
+            return phoneNumbers.Count > 0;
+        }
+
         /**
         * Tests whether a phone number matches a valid pattern. Note this doesn't verify the number
         * is actually in use, which is impossible to tell by just looking at a number itself.
