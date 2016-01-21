@@ -1961,13 +1961,17 @@ namespace PhoneNumbers
         }
 
         /// <summary>
-        /// Checks to see if the given phone number is valid for one of the regionCodes
+        /// Checks to see if the given phone number is valid for one of the regionCodes. If valid, matchedRegionCode will be populated
+        /// with the matched region code for the valid phone number.
         /// </summary>
         /// <param name="phoneNumber"></param>
         /// <param name="regionCodes"></param>
+        /// <param name="matchedRegionCode">If a valid number, this will be populated with the matching region code.</param>
         /// <returns>True if valid, false if not (or not able to parse phone number based on one of the regions)</returns>
-        public bool IsValidNumber(String phoneNumber, IList<String> regionCodes)
+        public bool IsValidNumber(String phoneNumber, IList<String> regionCodes, out String matchedRegionCode)
         {
+            matchedRegionCode = String.Empty;
+
             if (regionCodes == null || regionCodes.Count == 0)
                 return false;
 
@@ -1978,7 +1982,10 @@ namespace PhoneNumbers
                 if (pn != null)
                 {
                     if (IsValidNumberForRegion(pn, regionCode))
+                    {
+                        matchedRegionCode = regionCode;
                         phoneNumbers.Add(pn);
+                    }
                 }
             }
 

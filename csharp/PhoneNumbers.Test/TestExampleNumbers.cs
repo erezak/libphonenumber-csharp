@@ -48,11 +48,17 @@ namespace PhoneNumbers.Test
         {
             var usPhoneNumber = "14109992222";
             var canadaPhoneNumber = "14039782234";
-            var usValid = phoneNumberUtil.IsValidNumber(usPhoneNumber, new List<string>() { "US", "CA" });
-            var canadaValid = phoneNumberUtil.IsValidNumber(canadaPhoneNumber, new List<string>() { "US", "CA" });
+            String matchedUsRegionCode;
+            String matchedCanadianRegionCode;
+            
+            // Tests
+            var usValid = phoneNumberUtil.IsValidNumber(usPhoneNumber, new List<string>() { "US", "CA" }, out matchedUsRegionCode);
+            var canadaValid = phoneNumberUtil.IsValidNumber(canadaPhoneNumber, new List<string>() { "US", "CA" }, out matchedCanadianRegionCode);
 
             Assert.IsTrue(usValid);
             Assert.IsTrue(canadaValid);
+            Assert.AreEqual(matchedUsRegionCode, "US");
+            Assert.AreEqual(matchedCanadianRegionCode, "CA");
         }
 
         /**
