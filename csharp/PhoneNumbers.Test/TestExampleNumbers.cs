@@ -44,12 +44,15 @@ namespace PhoneNumbers.Test
         }
 
         [Test]
-        public void TestParse()
+        public void TestParseMultipleRegions()
         {
-            var phoneNumber = phoneNumberUtil.Parse("410-978-2234");
-            var isValid = phoneNumberUtil.IsValidNumber(phoneNumber);
+            var usPhoneNumber = "14109992222";
+            var canadaPhoneNumber = "14039782234";
+            var usValid = phoneNumberUtil.IsValidNumber(usPhoneNumber, new List<string>() { "US", "CA" });
+            var canadaValid = phoneNumberUtil.IsValidNumber(canadaPhoneNumber, new List<string>() { "US", "CA" });
 
-            Assert.IsTrue(isValid);
+            Assert.IsTrue(usValid);
+            Assert.IsTrue(canadaValid);
         }
 
         /**
