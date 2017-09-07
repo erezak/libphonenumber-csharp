@@ -20,6 +20,37 @@ C# port of Google's libphonenumber library:
   The original Apache License 2.0 was preserved.
 
   See [[https://bitbucket.org/pmezard/libphonenumber-csharp/src/tip/csharp/README.txt|csharp/README.txt]] for details about the port.
+## Examples
+
+```
+using PhoneNumbers;
+
+namespace MyNamespace
+{
+    public class PhoneValidator
+    {
+        private readonly PhoneNumberUtil _util;
+
+        public PhoneValidator()
+        {
+            _util = PhoneNumberUtil.GetInstance();
+        }
+
+        public bool Validate(string phone)
+        {
+            try
+            {
+                var number = _util.Parse(phone, "US");
+                return _util.IsValidNumber(number);
+            }
+            catch (NumberParseException)
+            {
+                return false;
+            }
+        }
+    }
+}
+```
 
 ## Features
 
