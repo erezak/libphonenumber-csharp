@@ -20,6 +20,55 @@ C# port of Google's libphonenumber library:
   The original Apache License 2.0 was preserved.
 
   See [[https://bitbucket.org/pmezard/libphonenumber-csharp/src/tip/csharp/README.txt|csharp/README.txt]] for details about the port.
+## Examples
+```
+using libphonenumber;
+...
+
+string germanNumberStr = "089123456";
+PhoneNumber number;
+try
+{
+    number = PhoneNumberUtil.Instance.Parse(germanNumberStr, "DE");
+}
+catch (NumberParseException e)
+{
+    throw;
+}
+
+if (number.IsValidNumber)
+{
+    // Produces "+49 89 123456"
+    Debug.WriteLine(number.Format(PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL));
+    // Produces "089 123456"
+    Debug.WriteLine(number.Format(PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
+    // Produces "+4989123456"
+    Debug.WriteLine(number.Format(PhoneNumberUtil.PhoneNumberFormat.E164));
+
+    // Produces "011 49 89 123456", the number when it is dialed in the United States.
+    Debug.WriteLine(number.FormatOutOfCountryCallingNumber("US"));
+}
+
+// Outputs "Munich"
+Debug.WriteLine(number.GetDescriptionForNumber(Locale.ENGLISH));
+// Outputs "München"
+Debug.WriteLine(number.GetDescriptionForNumber(Locale.GERMAN));
+// Outputs "Munich"
+Debug.WriteLine(number.GetDescriptionForNumber(Locale.ITALIAN));
+```
+
+```
+AsYouTypeFormatter formatter = PhoneNumberUtil.Instance.GetAsYouTypeFormatter("DE");
+Debug.WriteLine(formatter.InputDigit('0'));  // Outputs "0"
+Debug.WriteLine(formatter.InputDigit('8'));  // Outputs "08"
+Debug.WriteLine(formatter.InputDigit('9'));  // Outputs "089"
+Debug.WriteLine(formatter.InputDigit('1'));  // Outputs "089 1"
+Debug.WriteLine(formatter.InputDigit('2'));  // Outputs "089 12"
+Debug.WriteLine(formatter.InputDigit('3'));  // Outputs "089 123"
+Debug.WriteLine(formatter.InputDigit('4'));  // Outputs "089 1234"
+Debug.WriteLine(formatter.InputDigit('5'));  // Outputs "089 12345"
+Debug.WriteLine(formatter.InputDigit('6'));  // Outputs "089 123456"
+```
 
 ## Features
 
