@@ -857,6 +857,14 @@ namespace PhoneNumbers
         public static PhoneNumberUtil GetInstance(String baseFileLocation,
             Dictionary<int, List<String>> countryCallingCodeToRegionCodeMap)
         {
+            //double-check on purpose to avoid locking
+            //Storing value in a temp variable first, because it can get reset to null.
+            var i = instance_;
+            if (i != null)
+            {
+                return i;
+            }
+
             lock (thisLock)
             {
                 if (instance_ == null)
@@ -909,6 +917,14 @@ namespace PhoneNumbers
         */
         public static PhoneNumberUtil GetInstance()
         {
+            //double-check on purpose to avoid locking
+            //Storing value in a temp variable first, because it can get reset to null.
+            var i = instance_;
+            if (i != null)
+            {
+                return i;
+            }
+
             lock (thisLock)
             {
                 if (instance_ == null)
